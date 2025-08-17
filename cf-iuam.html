@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security Check</title>
+  <style>
+    :root {
+      --bg: #0c0d10;
+      --surface: #15171c;
+      --border: rgba(255, 255, 255, 0.06);
+      --text: #ffffff;
+      --text-dim: #9ca3af;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      --radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(20px);
+      box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    .logo {
+      width: 160px;
+      height: auto;
+      margin: 0 auto 40px;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 32px;
+      border: 2px solid rgba(59, 130, 246, 0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+
+    .challenge {
+      padding: 32px 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .challenge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: slide 2s infinite;
+    }
+
+    @keyframes slide {
+      to { left: 100%; }
+    }
+
+    .status {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .card {
+        padding: 40px 32px;
+        max-width: 100%;
+      }
+      
+      .logo {
+        width: 140px;
+        margin-bottom: 32px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .challenge {
+        padding: 24px 20px;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img 
+      src="https://cdn.discordapp.com/attachments/1403122875711623340/1403137623324885012/Sequence_01.gif?ex=68a252be&is=68a1013e&hm=e907e9bc8fdd3055d6b4f5a70b89dae42b160168e01635599295348f02d10373&" 
+      alt="Company Logo" 
+      class="logo"
+    />
+    
+    <div class="spinner"></div>
+    
+    <h1>Security Check</h1>
+    <p>Please wait while we verify your connection security.</p>
+    
+    <div class="challenge">
+      ::IM_UNDER_ATTACK_BOX::
+    </div>
+    
+    <div class="status">
+      <div class="dot"></div>
+      Verifying...
+    </div>
+  </main>
+</body>
+</html>
